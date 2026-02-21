@@ -1,31 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+/* ----------- GLOBAL ----------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    background: linear-gradient(120deg,#1d2671,#c33764);
+    color:white;
+    scroll-behavior:smooth;
+}
+
+/* ----------- NAVBAR ----------- */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:15px 40px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    z-index:1000;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:500;
+}
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* ----------- SECTIONS ----------- */
+section{
+    min-height:100vh;
+    padding:100px 10%;
+    display:flex;
+    align-items:center;
+}
+
+/* ----------- HOME ----------- */
+#home{
+    flex-direction:column;
+    text-align:center;
+}
+#home h1{
+    font-size:3rem;
+}
+#typing{
+    color:#ffdf6c;
+    font-size:1.5rem;
+    margin-top:15px;
+}
+
+/* ----------- GLASS CARD ----------- */
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ----------- ABOUT ----------- */
+#about p{
+    font-size:1.1rem;
+    line-height:1.7;
+}
+
+/* ----------- SKILLS ----------- */
+.skill{
+    margin:15px 0;
+}
+.bar{
+    height:10px;
+    background:rgba(255,255,255,0.3);
+    border-radius:5px;
+}
+.fill{
+    height:100%;
+    background:#ffdf6c;
+    border-radius:5px;
+}
+
+/* ----------- PROJECTS ----------- */
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* ----------- CONTACT ----------- */
+input,textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+}
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ffdf6c;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    transform:scale(1.05);
+}
+</style>
 </head>
+
 <body>
 
-  <h1>Hello, I'm Pravalika</h1>
-  <p>Student | Developer | Learner</p>
+<!-- NAVBAR -->
+<nav>
+    <h3>MyPortfolio</h3>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-  <h2>About Me</h2>
-  <p>I am a student interested in technology and development.</p>
+<!-- HOME -->
+<section id="home">
+    <h1>Hello, I'm <span style="color:#ffdf6c;">Your Name</span></h1>
+    <div id="typing"></div>
+</section>
 
-  <h2>Skills</h2>
-  <ul>
-    <li>Java</li>
-    <li>Python</li>
-    <li>Web Development</li>
-  </ul>
+<!-- ABOUT -->
+<section id="about">
+    <div class="card">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate web developer with interest in creating 
+            responsive, user-friendly websites and applications. 
+            I enjoy learning new technologies and building real-world projects.
+        </p>
+    </div>
+</section>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>Project 1</li>
-    <li>Project 2</li>
-  </ul>
+<!-- SKILLS -->
+<section id="skills">
+    <div class="card" style="width:100%;">
+        <h2>Skills</h2>
 
-  <h2>Contact</h2>
-  <p>Email: pravalika19@gmail.com</p>
+        <div class="skill">HTML
+            <div class="bar"><div class="fill" style="width:90%;"></div></div>
+        </div>
+
+        <div class="skill">CSS
+            <div class="bar"><div class="fill" style="width:85%;"></div></div>
+        </div>
+
+        <div class="skill">JavaScript
+            <div class="bar"><div class="fill" style="width:75%;"></div></div>
+        </div>
+
+        <div class="skill">Java / Python
+            <div class="bar"><div class="fill" style="width:70%;"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="card" style="width:100%;">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">Portfolio Website</div>
+            <div class="card">Student Management System</div>
+            <div class="card">CloudSim Scheduling Project</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="card" style="width:100%;">
+        <h2>Contact Me</h2>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="4" placeholder="Message"></textarea>
+        <button>Send Message</button>
+    </div>
+</section>
+
+<script>
+/* ----------- TYPING EFFECT ----------- */
+const text = ["Web Developer","Student","Tech Enthusiast"];
+let i=0,j=0, current="", isDeleting=false;
+
+function type(){
+    if(i < text.length){
+        if(!isDeleting && j <= text[i].length){
+            current = text[i].substring(0,j++);
+        }
+        if(isDeleting && j >=0){
+            current = text[i].substring(0,j--);
+        }
+        document.getElementById("typing").innerHTML = current;
+
+        if(j === text[i].length){
+            isDeleting=true;
+        }
+        if(isDeleting && j===0){
+            isDeleting=false;
+            i++;
+        }
+    } else {
+        i=0;
+    }
+    setTimeout(type,120);
+}
+type();
+</script>
 
 </body>
-</html>  change this about any beach
+</html>
